@@ -4,6 +4,7 @@ namespace SkillUp.Domaine.Entities;
 
 public class Mentoring
 {
+
   public Guid Id { get; set; }
   public DateTime CreatedAt { get; set; }
   
@@ -17,4 +18,5 @@ public class Mentoring
 
   public Guid SkillId { get; set; }
   public virtual Skill Skill { get; set; } = null!;
+
 }
