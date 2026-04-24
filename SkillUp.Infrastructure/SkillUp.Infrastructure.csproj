@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Database\Configurations\" />
+    <Folder Include="Repositories\" />
     <ProjectReference Include="..\SkillUp.Core\SkillUp.Core.csproj" />
     <ProjectReference Include="..\SkillUp.Security\SkillUp.Security.csproj" />
   </ItemGroup>
