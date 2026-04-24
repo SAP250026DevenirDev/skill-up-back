@@ -4,6 +4,7 @@ namespace SkillUp.Domaine.Entities;
 
 public class Mentoring
 {
+  public Guid Id { get; set; }
   public required MentoringStatus Type { get; set; }
   public DateTime CreatedAt { get; set; }
   
