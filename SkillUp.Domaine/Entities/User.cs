@@ -17,7 +17,7 @@ public class User
   public DateTime UpdatedAt { get; set; }
   
   
-  public virtual ICollection<Evaluation> Evaluations { get; set; } = new List<Evaluation>();
+  public virtual ICollection<Evaluate> Evaluations { get; set; } = new List<Evaluate>();
   
   public virtual ICollection<Mentoring> MentoringsAsMentor { get; set; } = new List<Mentoring>();
   public virtual ICollection<Mentoring> MentoringsAsCollaborator { get; set; } = new List<Mentoring>();
