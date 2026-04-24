@@ -2,8 +2,9 @@
 
 public class Evaluate
 {
-  public int Level { get; set; }
+  public required int Level { get; set; }
   public string Comment { get; set; } = string.Empty;
+  
   public int UserId { get; set; }
   public virtual User User { get; set; } = null!;
 
