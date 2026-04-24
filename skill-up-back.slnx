@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="SkillUp.API/SkillUp.API.csproj" />
+  <Project Path="SkillUp.Core/SkillUp.Core.csproj" />
+  <Project Path="SkillUp.Domaine/SkillUp.Domaine.csproj" />
+  <Project Path="SkillUp.Infrastructure/SkillUp.Infrastructure.csproj" />
+  <Project Path="SkillUp.Security/SkillUp.Security.csproj" />
+</Solution>
