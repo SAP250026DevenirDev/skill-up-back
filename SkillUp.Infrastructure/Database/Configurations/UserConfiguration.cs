@@ -13,16 +13,20 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
   public void Configure(EntityTypeBuilder<User> builder)
   {
     builder.Property(u => u.FirstName)
-      .IsRequired();
+      .IsRequired()
+      .HasMaxLength(50);
 
     builder.Property(u => u.LastName)
-      .IsRequired();
+      .IsRequired()
+      .HasMaxLength(50);
 
     builder.Property(u => u.Email)
-      .IsRequired();
+      .IsRequired()
+      .HasMaxLength(250);
 
     builder.Property(u => u.HashedPassword)
-      .IsRequired();
+      .IsRequired()
+      .HasMaxLength(100);
 
     builder.Property(u => u.Role)
       .IsRequired();

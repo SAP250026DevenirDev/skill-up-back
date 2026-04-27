@@ -15,10 +15,12 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
 
     builder.Property(s => s.Name)
       .IsRequired()
-      .HasColumnType("nvarchar");
+      .HasColumnType("nvarchar")
+      .HasMaxLength(100);
 
     builder.Property(s => s.Description)
-      .HasColumnType("nvarchar");
+      .HasColumnType("nvarchar")
+      .HasMaxLength(500);
 
     builder.HasOne(s => s.Category)
       .WithMany(c => c.Skills)

@@ -14,9 +14,11 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     builder.HasKey(c => c.Id);
 
     builder.Property(c => c.Name).IsRequired()
-      .HasColumnType("nvarchar");
+      .HasColumnType("nvarchar")
+      .HasMaxLength(100);
     builder.Property(c => c.Description)
-      .HasColumnType("nvarchar");
+      .HasColumnType("nvarchar")
+      .HasMaxLength(500);
     
     builder.HasData(
       new Category { Id = CatDevId , Name = "Développement", Description = "Langages et frameworks" },
