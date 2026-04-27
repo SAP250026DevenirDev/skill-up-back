@@ -1,0 +1,38 @@
+name: CICD Skill-up Back
+ 
+on:
+  push:
+    branches: ["main", "develop"]
+  pull_request:
+    branches: ["main", "develop"]
+ 
+jobs:
+  build:
+    name: Build Solution
+    runs-on: ubuntu-latest
+ 
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore skill-up-back.slnx
+
+      - name: Build solution
+        run: dotnet build skill-up-back.slnx --configuration Release --no-restore
+
+      - name: Notify Discord on failure
+        if: failure()
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: failure
+          title: "Build échoué"
+          description: "Le build sur la branche `${{ github.ref_name }}` a échoué. Vérifiez les erreurs !"
+ 
