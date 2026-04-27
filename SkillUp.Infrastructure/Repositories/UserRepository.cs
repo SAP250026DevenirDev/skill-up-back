@@ -12,6 +12,7 @@ namespace SkillUp.Infrastructure.Repositories
     {
         public async Task<User?> GetByEmailAsync(string email)
         {
+            if (email is null) return null;
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
     }
