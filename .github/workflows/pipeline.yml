@@ -2,7 +2,7 @@ name: CICD Skill-up Back
  
 on:
   push:
-    branches: [main, develop,feature/**]
+    branches: [main, develop, "feature/**", "features/**"]
   pull_request:
     branches: [main, develop]
  
