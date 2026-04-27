@@ -17,14 +17,17 @@ namespace SkillUp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto _loginRequest)
         {
-            
-            User user = await _authService.LoginAsync(_loginRequest.Email, _loginRequest.HashedPassword);
+            try
+            {
+                User user = await _authService.LoginAsync(_loginRequest.Email, _loginRequest.HashedPassword);
+                string token = _jwtService.GenerateToken(user);
+                return Ok(new LoginResponseDto { Token = token });
+            }
 
-            
-            string token = _jwtService.GenerateToken(user);
-
-            
-            return Ok(new LoginResponseDto { Token = token });
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { ex.Message });
+            }
         }
 
     }

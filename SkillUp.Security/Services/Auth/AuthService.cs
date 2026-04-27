@@ -19,14 +19,14 @@ namespace SkillUp.Security.Services.Auth
             var user = await _userRepository.GetByEmailAsync(email);
             if (user == null)
             {
-                throw new UnauthorizedAccessException("Email or password is not correct");
+                throw new UnauthorizedAccessException("The email/password is not correct");
             }
 
             
             bool isPasswordOk = _passwordHasherService.VerifyPassword(password, user.HashedPassword);
             if (!isPasswordOk)
             {
-                throw new UnauthorizedAccessException("Email or password is not correct");
+                throw new UnauthorizedAccessException("The email/password is not correct");
             }
             return user;
 
