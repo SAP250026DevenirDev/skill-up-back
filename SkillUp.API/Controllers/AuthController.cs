@@ -19,11 +19,11 @@ namespace SkillUp.API.Controllers
         {
             try
             {
-                User user = await _authService.LoginAsync(_loginRequest.Email, _loginRequest.HashedPassword);
-                string token = _jwtService.GenerateToken(user);
+            User user = await _authService.LoginAsync(_loginRequest.Email, _loginRequest.HashedPassword);
+            string token = _jwtService.GenerateToken(user);
                 return Ok(new LoginResponseDto { Token = token });
             }
-
+            
             catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized(new { ex.Message });
