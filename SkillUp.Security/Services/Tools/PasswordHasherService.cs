@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SkillUp.Security.Services.Tools
 {
-    internal class PasswordHasherService : IPasswordHasherService
+    public class PasswordHasherService : IPasswordHasherService
     {
         private const int SaltSize = 16;
         private const int HashSize = 32;

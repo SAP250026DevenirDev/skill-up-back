@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SkillUp.Core.Interfaces.Services.Tools;
 using SkillUp.Domaine.Entities;
 using SkillUp.Domaine.Enums;
+using SkillUp.Security.Services.Tools;
 
 namespace SkillUp.Infrastructure.Database.Configurations;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
+  private readonly PasswordHasherService _passwordHasher = new PasswordHasherService();
   public static readonly Guid UserJeanId = Guid.Parse("e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b");
   public static readonly Guid UserAliceId = Guid.Parse("f1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c");
 
@@ -35,17 +38,18 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     builder.Property(u => u.Email).IsRequired().HasMaxLength(150);
     builder.HasIndex(u => u.Email).IsUnique();
 
+
     builder.HasData(
       new User
       {
         Id = UserJeanId, FirstName = "Jean", LastName = "Mentor", Email = "jean@skillup.com",
-        HashedPassword = "hash", Role = Roles.Collaborator, IsActive = true,
+        HashedPassword = _passwordHasher.HashPassword("hash"), Role = Roles.Collaborator, IsActive = true,
         CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1)
       },
       new User
       {
         Id = UserAliceId, FirstName = "Alice", LastName = "Collab", Email = "alice@skillup.com",
-        HashedPassword = "hash", Role = Roles.Collaborator, IsActive = true,
+        HashedPassword = _passwordHasher.HashPassword("hash"), Role = Roles.Collaborator, IsActive = true,
         CreatedAt = new DateTime(2026, 1, 1), UpdatedAt = new DateTime(2026, 1, 1)
       });
   }
