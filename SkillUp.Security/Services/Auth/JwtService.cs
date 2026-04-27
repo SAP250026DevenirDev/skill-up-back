@@ -8,7 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace SkillUp.Security.Services
+namespace SkillUp.Security.Services.Auth
 {
     public class JwtService(IConfiguration configuration) : IJwtService
     {
@@ -19,7 +19,7 @@ namespace SkillUp.Security.Services
             var expiration = DateTime.UtcNow.AddMinutes(int.Parse(jwtSettings["ExpirationMinutes"] ?? "30"));
 
 
-            //création des claims
+            
             var claims = new[]
             {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),

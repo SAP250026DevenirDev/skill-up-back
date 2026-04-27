@@ -7,11 +7,12 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace SkillUp.Security.Services
+namespace SkillUp.Security.Services.Auth
 {
     public class AuthService(
         IUserRepository _userRepository,
-        IJwtService _jwtService) : IAuthService
+        IJwtService _jwtService,
+        IPasswordHasherService _passwordHasherService) : IAuthService
     {
         public async Task<User> LoginAsync(string email, string password)
         {
@@ -21,8 +22,8 @@ namespace SkillUp.Security.Services
                 throw new UnauthorizedAccessException("Email or password is not correct");
             }
 
-            //Hashage mot de passe à faire
-            bool isPasswordOk = _passwordHasherService.VerifyPasswordAsync(password, user.HashedPassword);
+            
+            bool isPasswordOk = _passwordHasherService.VerifyPassword(password, user.HashedPassword);
             if (!isPasswordOk)
             {
                 throw new UnauthorizedAccessException("Email or password is not correct");
