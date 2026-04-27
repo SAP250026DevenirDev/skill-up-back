@@ -1,6 +1,14 @@
 using Scalar.AspNetCore;
 
+using Microsoft.EntityFrameworkCore;
+using SkillUp.Infrastructure.Database.Context;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+builder.Services.AddDbContext<SkillUpDbContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 

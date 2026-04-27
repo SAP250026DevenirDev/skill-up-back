@@ -15,5 +15,8 @@ public class SkillUpDbContext(DbContextOptions<SkillUpDbContext> options) : DbCo
   {
     base.OnModelCreating(modelBuilder);
     modelBuilder.ApplyConfigurationsFromAssembly(typeof(SkillUpDbContext).Assembly);
+    
   }
+  
+  
 }

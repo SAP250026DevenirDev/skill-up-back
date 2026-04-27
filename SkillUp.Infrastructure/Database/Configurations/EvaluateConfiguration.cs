@@ -29,5 +29,19 @@ public class EvaluateConfiguration : IEntityTypeConfiguration<Evaluate>
       .WithMany(s => s.Evaluations)
       .HasForeignKey(e => e.SkillId)
       .OnDelete(DeleteBehavior.Cascade);
+
+    builder.HasData(
+      new Evaluate
+      {
+        UserId = UserConfiguration.UserJeanId,
+        SkillId = SkillConfiguration.SkillCSharpId,
+        Level = 5, LastUpdate = new DateTime(2026, 4, 20)
+      },
+      new Evaluate
+      {
+        UserId = UserConfiguration.UserAliceId,
+        SkillId = SkillConfiguration.SkillCSharpId,
+        Level = 1, LastUpdate = new DateTime(2026, 4, 20)
+      });
   }
 }
