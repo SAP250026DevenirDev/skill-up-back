@@ -2,13 +2,12 @@ name: CICD Skill-up Back
  
 on:
   push:
-    branches: ["main", "develop","feature/**"]
+    branches: [main, develop,feature/**]
   pull_request:
-    branches: ["main", "develop"]
+    branches: [main, develop]
  
 jobs:
   build:
-    name: Build Solution
     runs-on: ubuntu-latest
  
     steps:
@@ -35,4 +34,5 @@ jobs:
           status: failure
           title: "Build échoué"
           description: "Le build sur la branche `${{ github.ref_name }}` a échoué. Vérifiez les erreurs !"
- 
+
+
