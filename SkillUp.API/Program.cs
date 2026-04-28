@@ -1,20 +1,32 @@
 using Scalar.AspNetCore;
-
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Core.Interfaces.Services;
 using SkillUp.Core.Interfaces.Repositories;
 using SkillUp.Infrastructure.Repositories;
 using SkillUp.Core.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+//PasswordHasherService hasher = new PasswordHasherService();
+//Console.WriteLine("Jean: " + hasher.HashPassword("hash"));
+//Console.WriteLine("Alice: " + hasher.HashPassword("hash"));
+//Console.WriteLine("Admin: " + hasher.HashPassword("hash"));
+
+//scopes
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddSecurityServices(builder.Configuration);
 
 // Add Skill
 builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 
-builder.Services.AddDbContext<SkillUpDbContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//Déplacée dans InfraServiceExtension
+//builder.Services.AddDbContext<SkillUpDbContext>(options =>
+//options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Add services to the container.
 
@@ -33,6 +45,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
