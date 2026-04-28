@@ -17,8 +17,8 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
         var category = new Category
         {
             Id = Guid.NewGuid(),
-            Name = dto.Name,
-            Description = dto.Description ?? string.Empty
+            Name = dto.CategoryName,
+            Description = dto.CategoryDescription ?? string.Empty
         };
 
         await _categoryService.AddAsync(category);
