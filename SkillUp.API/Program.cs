@@ -1,4 +1,3 @@
-using Scalar.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using SkillUp.Infrastructure.Database.Context;
