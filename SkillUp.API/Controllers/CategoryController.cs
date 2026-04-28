@@ -30,6 +30,6 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
             CategoryDescription = category.Description
         };
 
-        return CreatedAtAction(nameof(AddCategory), new { id = category.Id }, response);
+        return Ok(response);
     }
 }
