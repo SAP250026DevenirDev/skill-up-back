@@ -8,6 +8,7 @@ namespace SkillUp.Core.Interfaces.Repositories
     public interface ICategoryRepository
     {
 
-        Task<IEnumerable<Category>> GetByIdsAsync(IEnumerable<Guid> ids);
+        Task<Category?> GetByIdsAsync(Guid Id);
+        Task<Category> Addasync(Category category);
     }
 }
