@@ -20,9 +20,7 @@
   <ItemGroup>
     <Folder Include="Dtos\Responses\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Mappers\" />
     <Folder Include="Dtos\Responses\" />
-    <Folder Include="Mappers\" />
   </ItemGroup>
 
   <ItemGroup>
