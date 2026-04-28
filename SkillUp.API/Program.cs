@@ -2,10 +2,16 @@ using Scalar.AspNetCore;
 
 using Microsoft.EntityFrameworkCore;
 using SkillUp.Infrastructure.Database.Context;
+using SkillUp.Core.Interfaces.Services;
+using SkillUp.Core.Interfaces.Repositories;
+using SkillUp.Infrastructure.Repositories;
+using SkillUp.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+// Add Skill
+builder.Services.AddScoped<ISkillService, SkillService>();
+builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 
 builder.Services.AddDbContext<SkillUpDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
