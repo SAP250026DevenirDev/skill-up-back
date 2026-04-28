@@ -5,6 +5,7 @@ using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Core.Interfaces.Repositories;
 using SkillUp.Infrastructure.Repositories;
 using SkillUp.Core.Services.Data;
+using SkillUp.Core.Interfaces.Services.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
