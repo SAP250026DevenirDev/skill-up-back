@@ -11,8 +11,8 @@ public static class CategoryMapper
         return new Category()
         {
             Id = Guid.NewGuid(),
-            Name = dto.CategoryName,
-            Description = dto.CategoryDescription,
+            Name = dto.Name,
+            Description = dto.Description,
         };
     }
 }
