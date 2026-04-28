@@ -16,14 +16,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 
+//Add Category
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+
 builder.Services.AddDbContext<SkillUpDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 // Add services to the container.
 
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
