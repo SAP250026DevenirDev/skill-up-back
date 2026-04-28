@@ -6,6 +6,8 @@ using SkillUp.Core.Interfaces.Services;
 using SkillUp.Core.Interfaces.Repositories;
 using SkillUp.Infrastructure.Repositories;
 using SkillUp.Core.Services;
+using SkillUp.Infrastructure.Extensions;
+using SkillUp.Security.Extensions;
 
 
 var builder = WebApplication.CreateBuilder(args);
