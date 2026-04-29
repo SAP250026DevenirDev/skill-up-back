@@ -1,11 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
-using SkillUp.Infrastructure.Database.Context;
-using SkillUp.Core.Interfaces.Services;
+using SkillUp.API.Extensions;
+using SkillUp.API.Scalar;
 using SkillUp.Core.Interfaces.Repositories;
-using SkillUp.Infrastructure.Repositories;
+using SkillUp.Core.Interfaces.Services;
 using SkillUp.Core.Services;
+using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Infrastructure.Extensions;
+using SkillUp.Infrastructure.Repositories;
 using SkillUp.Security.Extensions;
 
 
@@ -15,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Console.WriteLine("Jean: " + hasher.HashPassword("hash"));
 //Console.WriteLine("Alice: " + hasher.HashPassword("hash"));
 //Console.WriteLine("Admin: " + hasher.HashPassword("hash"));
-
+builder.Services.ConfigurePolicyCors(builder.Configuration);
 //scopes
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddSecurityServices(builder.Configuration);
@@ -27,13 +29,13 @@ builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 //Déplacée dans InfraServiceExtension
 //builder.Services.AddDbContext<SkillUpDbContext>(options =>
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.ConfigureJwTAuthentication(builder.Configuration);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddOpenApi(options => options.AddDocumentTransformer<BearerSecuritySchemeTransformer>());
 
 var app = builder.Build();
 
