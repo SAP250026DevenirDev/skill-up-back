@@ -17,7 +17,15 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
     {
         var category = dto.ToModel();
 
+        await _categoryService.AddAsync(category);
 
-        return Ok(Response);
+        var response = new AddCategoryResponsesDto
+        {
+            Id = category.Id,
+            Name = category.Name,
+            Description = category.Description
+        };
+
+        return CreatedAtAction(nameof(AddCategory), new { id = category.Id }, response);
     }
 }
