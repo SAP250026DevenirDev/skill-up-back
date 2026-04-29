@@ -5,21 +5,17 @@ using SkillUp.API.Dtos.Requests;
 using SkillUp.API.Dtos.Responses;
 using SkillUp.Core.Services.Data;
 using SkillUp.Domaine.Entities;
+using SkillUp.API.Mappers;
 
+[Route("api/[controller]")]
 [ApiController]
-[Route("api/categories")]
 public class CategoryController(ICategoryService _categoryService) : ControllerBase
 {
     [HttpPost]
     //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> AddCategory(AddCategoryRequestDto dto)
     {
-        var category = new Category
-        {
-            Id = Guid.NewGuid(),
-            Name = dto.Name,
-            Description = dto.Description ?? string.Empty
-        };
+        var category = dto.ToModel();
 
         await _categoryService.AddAsync(category);
 

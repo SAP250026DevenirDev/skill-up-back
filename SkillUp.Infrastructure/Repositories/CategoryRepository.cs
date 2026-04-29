@@ -13,7 +13,7 @@ namespace SkillUp.Infrastructure.Repositories
     {
         protected readonly SkillUpDbContext _dbContext = _context;
 
-        public async Task<Category> Addasync(Category category)
+        public async Task<Category> AddAsync(Category category)
         {
             await _dbContext.Categories.AddAsync(category);
             await _dbContext.SaveChangesAsync();

@@ -8,7 +8,7 @@ public class CategoryService(ICategoryRepository _categoryRepository) : ICategor
 {
     public async Task AddAsync(Category category)
     {
-        await _categoryRepository.Addasync(category);
+        await _categoryRepository.AddAsync(category);
         
     }
 }
