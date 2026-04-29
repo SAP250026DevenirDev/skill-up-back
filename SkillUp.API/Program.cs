@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Console.WriteLine("Jean: " + hasher.HashPassword("hash"));
 //Console.WriteLine("Alice: " + hasher.HashPassword("hash"));
 //Console.WriteLine("Admin: " + hasher.HashPassword("hash"));
-
+builder.Services.ConfigurePolicyCors(builder.Configuration);
 //scopes
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddSecurityServices(builder.Configuration);
