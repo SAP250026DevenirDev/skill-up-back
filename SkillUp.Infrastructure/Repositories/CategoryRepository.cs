@@ -24,5 +24,9 @@ namespace SkillUp.Infrastructure.Repositories
         {
             return await _dbContext.Categories.FirstOrDefaultAsync(c => c.Id == Id);
         }
+        public async Task<Category?> GetByNameAsync(string name)
+        {
+            return await _dbContext.Categories.FirstOrDefaultAsync(c => c.Name == name);
+        }
     }
 }

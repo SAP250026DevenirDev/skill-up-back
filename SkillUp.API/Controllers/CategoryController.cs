@@ -12,20 +12,12 @@ using SkillUp.API.Mappers;
 public class CategoryController(ICategoryService _categoryService) : ControllerBase
 {
     [HttpPost]
-    //[Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Administrator")]
     public async Task<IActionResult> AddCategory(AddCategoryRequestDto dto)
     {
         var category = dto.ToModel();
 
-        await _categoryService.AddAsync(category);
 
-        var response = new AddCategoryResponsesDto
-        {
-            Id = category.Id,
-            Name = category.Name,
-            Description = category.Description
-        };
-
-        return Ok(response);
+        return Ok(Response);
     }
 }
