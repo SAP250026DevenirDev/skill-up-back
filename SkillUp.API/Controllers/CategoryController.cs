@@ -15,17 +15,36 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
     //[Authorize(Roles = "Administrator")]
     public async Task<IActionResult> AddCategory(AddCategoryRequestDto dto)
     {
-        var category = dto.ToModel();
-
-        await _categoryService.AddAsync(category);
-
-        var response = new AddCategoryResponsesDto
+        try
         {
-            Id = category.Id,
-            Name = category.Name,
-            Description = category.Description
-        };
+            var category = dto.ToModel();
 
-        return CreatedAtAction(nameof(AddCategory), new { id = category.Id }, response);
+            await _categoryService.AddAsync(category);
+
+            var response = new AddCategoryResponsesDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description
+            };
+
+            return CreatedAtAction(nameof(AddCategory), new { id = category.Id }, response);
+        }
+        catch (ArgumentNullException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Conflict(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An unexpected error occurred : {ex.Message}");
+        }
     }
 }
