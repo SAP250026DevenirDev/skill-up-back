@@ -18,12 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Dtos\Responses\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SkillUp.Core\SkillUp.Core.csproj" />
     <ProjectReference Include="..\SkillUp.Infrastructure\SkillUp.Infrastructure.csproj" />
   </ItemGroup>

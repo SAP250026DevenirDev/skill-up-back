@@ -24,6 +24,9 @@ builder.Services.AddSecurityServices(builder.Configuration);
 builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+
 //Déplacée dans InfraServiceExtension
 //builder.Services.AddDbContext<SkillUpDbContext>(options =>
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

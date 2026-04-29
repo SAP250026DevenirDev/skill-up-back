@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SkillUp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initDb : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -141,8 +141,9 @@ namespace SkillUp.Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "HashedPassword", "IsActive", "IsPasswordChanged", "LastName", "Role", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { new Guid("e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jean@skillup.com", "Jean", "hash", true, false, "Mentor", 0, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { new Guid("f1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "alice@skillup.com", "Alice", "hash", true, false, "Collab", 0, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { new Guid("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@skillup.com", "Admin", "YqpWnU8TuQ9Mkma000ZRdiIjwehAbBwf5+qt+TvaiLoGV9c4ktppxkVG82dNKs/q", true, false, "SkillUp", 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "jean@skillup.com", "Jean", "Y92gmIIn9/HsivTyLtWMY509RVjeMI1jCH8VdBkt8QVPWOfgbH0bMcJANnCXB0GK", true, false, "Mentor", 0, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("f1a2b3c4-d5e6-4f7a-8b9c-0d1e2f3a4b5c"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "alice@skillup.com", "Alice", "/W9gBsPa8we2uFArQsCyjvmeIE3LiiryE9biTMx7/JWg/cOYl6yajUsnrjWzAc9U", true, false, "Collab", 0, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

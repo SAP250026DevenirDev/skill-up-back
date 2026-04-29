@@ -12,8 +12,8 @@ using SkillUp.Infrastructure.Database.Context;
 namespace SkillUp.Infrastructure.Migrations
 {
     [DbContext(typeof(SkillUpDbContext))]
-    [Migration("20260427112452_initDb")]
-    partial class initDb
+    [Migration("20260429103032_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -245,7 +245,7 @@ namespace SkillUp.Infrastructure.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "jean@skillup.com",
                             FirstName = "Jean",
-                            HashedPassword = "hash",
+                            HashedPassword = "Y92gmIIn9/HsivTyLtWMY509RVjeMI1jCH8VdBkt8QVPWOfgbH0bMcJANnCXB0GK",
                             IsActive = true,
                             IsPasswordChanged = false,
                             LastName = "Mentor",
@@ -258,11 +258,24 @@ namespace SkillUp.Infrastructure.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alice@skillup.com",
                             FirstName = "Alice",
-                            HashedPassword = "hash",
+                            HashedPassword = "/W9gBsPa8we2uFArQsCyjvmeIE3LiiryE9biTMx7/JWg/cOYl6yajUsnrjWzAc9U",
                             IsActive = true,
                             IsPasswordChanged = false,
                             LastName = "Collab",
                             Role = 0,
+                            UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d"),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@skillup.com",
+                            FirstName = "Admin",
+                            HashedPassword = "YqpWnU8TuQ9Mkma000ZRdiIjwehAbBwf5+qt+TvaiLoGV9c4ktppxkVG82dNKs/q",
+                            IsActive = true,
+                            IsPasswordChanged = false,
+                            LastName = "SkillUp",
+                            Role = 2,
                             UpdatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
