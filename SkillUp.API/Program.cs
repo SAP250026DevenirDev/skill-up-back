@@ -22,10 +22,6 @@ builder.Services.ConfigurePolicyCors(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddSecurityServices(builder.Configuration);
 
-// Add Skill
-builder.Services.AddScoped<ISkillService, SkillService>();
-builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
-
 //Déplacée dans InfraServiceExtension
 //builder.Services.AddDbContext<SkillUpDbContext>(options =>
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

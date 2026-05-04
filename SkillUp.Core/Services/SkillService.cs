@@ -15,9 +15,13 @@ namespace SkillUp.Core.Services
         {
             _skillsRepository = skillsRepository;   
         }
-        public Skill Create(Skill skill)
+        public async Task<Skill> CreateAsync(Skill skill)
         {
-            return _skillsRepository.Create(skill);
+            if(skill == null)
+            {
+                throw new ArgumentException("Skill cannot be null.");
+            }
+            return await _skillsRepository.CreateAsync(skill);
         }
     }
 }

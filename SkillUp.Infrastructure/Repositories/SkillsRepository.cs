@@ -16,12 +16,18 @@ namespace SkillUp.Infrastructure.Repositories
         {
             _context = skillUpDbContext;
         }
-        public Skill Create(Skill skill)
-        {
-            EntityEntry<Skill> skillCreated = _context.Skills.Add(skill);
-            _context.SaveChanges();
 
-            return skillCreated.Entity;
+        /// <summary>
+        /// Asynchronously adds a new skill to the data store.
+        /// </summary>
+        /// <param name="skill">The skill entity to add. Cannot be null.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the added skill entity.</returns>
+        public async Task<Skill> CreateAsync(Skill skill)
+        {
+            await _context.Skills.AddAsync(skill);
+            await _context.SaveChangesAsync();
+
+            return skill;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace SkillUp.Core.Interfaces.Services
 {
     public interface ISkillService
     {
-        Skill Create(Skill skill);
+        Task<Skill> CreateAsync(Skill skill);
     }
 }

@@ -58,6 +58,7 @@ namespace SkillUp.API.Controllers
             }
             catch (ArgumentException ex)
             {
+                Console.WriteLine($"ArgumentException: {ex.Message}");
                 return BadRequest(ex.Message);
             }
             catch(Exception ex)
