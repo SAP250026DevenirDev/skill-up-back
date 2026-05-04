@@ -43,6 +43,7 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.ConfigureJwTAuthentication(builder.Configuration);
 
 // Add services to the container.
+builder.Services.AddScoped<ISkillService, SkillService>();
 
 
 

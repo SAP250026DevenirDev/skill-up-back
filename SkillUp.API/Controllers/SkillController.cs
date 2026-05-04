@@ -19,13 +19,18 @@ namespace SkillUp.API.Controllers
             _skillService = skillService;
         }
 
-        [HttpPost]
+        /// <summary>
+        /// Creates a new skill using the provided data.
+        /// </summary>
+        /// <remarks>Requires authentication. Only users with appropriate permissions can create new
+        /// skills. The request body must contain valid skill data.</remarks>
+        /// <param name="requestDto">The data transfer object containing the information required to create a new skill. Cannot be null.</param>
+        /// <returns>An HTTP 201 Created response if the skill is successfully created; otherwise, an appropriate error response
+        /// such as 400 Bad Request, 401 Unauthorized, or 500 Internal Server Error.</returns>
+        [HttpPost("newSkill")]
         [Authorize(Roles = "Administrator")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public IActionResult Create([FromBody] SkillRequestDto requestDto)
         {
-            Skill skillCreated = _skillService.Create(requestDto.ToModel());
 
             return Ok(skillCreated);
         }

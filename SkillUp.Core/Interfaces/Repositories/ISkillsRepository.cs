@@ -7,6 +7,6 @@ namespace SkillUp.Core.Interfaces.Repositories
 {
     public interface ISkillsRepository
     {
-        Skill Create(Skill skill);
+        Task<Skill> CreateAsync(Skill skill);
     }
 }
