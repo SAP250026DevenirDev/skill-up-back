@@ -22,16 +22,13 @@ namespace SkillUp.API.Controllers
         /// <summary>
         /// Creates a new skill using the provided data.
         /// </summary>
-        /// <remarks>This action is restricted to users with the 'Administrator' role. The request body
-        /// must conform to the expected SkillRequestDto schema. Validation errors will result in a 400 Bad Request
-        /// response.</remarks>
-        /// <param name="requestDto">The data transfer object containing the information required to create a new skill. Must not be null and
-        /// must satisfy all validation requirements.</param>
-        /// <returns>An IActionResult indicating the result of the operation. Returns 201 Created with the created skill on
-        /// success, 400 Bad Request if the input is invalid, 401 Unauthorized if the user is not authorized, or 500
-        /// Internal Server Error if an unexpected error occurs.</returns>
+        /// <remarks>Requires authentication. Only users with appropriate permissions can create new
+        /// skills. The request body must contain valid skill data.</remarks>
+        /// <param name="requestDto">The data transfer object containing the information required to create a new skill. Cannot be null.</param>
+        /// <returns>An HTTP 201 Created response if the skill is successfully created; otherwise, an appropriate error response
+        /// such as 400 Bad Request, 401 Unauthorized, or 500 Internal Server Error.</returns>
         [HttpPost("newSkill")]
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -40,6 +37,11 @@ namespace SkillUp.API.Controllers
             try {
                 Skill skillCreated = await _skillService.CreateAsync(requestDto.ToModel());
                 return Ok("The skill has been saving");
+            }
+            catch(ArgumentException ex)
+            {
+                Console.WriteLine($"Bad request: {ex.Message}");
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
