@@ -7,7 +7,6 @@ namespace SkillUp.API.Mappers
     {
         public static Skill ToModel(this SkillCreateRequestDto dto)
         {
-
             return new Skill()
             {
                 Id = Guid.NewGuid(),

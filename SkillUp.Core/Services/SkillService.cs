@@ -15,6 +15,13 @@ namespace SkillUp.Core.Services
         {
             _skillsRepository = skillsRepository;   
         }
+
+        /// <summary>
+        /// Creates a new skill asynchronously.
+        /// </summary>
+        /// <param name="skill">The skill entity to be created. Must not be null.</param>
+        /// <returns>The created skill entity.</returns>
+        /// <exception cref="ArgumentException">Thrown when the skill parameter is null.</exception>
         public async Task<Skill> CreateAsync(Skill skill)
         {
             if(skill == null)
