@@ -68,46 +68,5 @@ namespace SkillUp.API.Controllers
         return BadRequest(ex.Message);
       }
     }
-
-    /// <summary>
-    /// Endpoint réservé aux administrateurs pour créer un nouveau compte utilisateur.
-    /// </summary>
-    [HttpPost("admin/create-user")]
-    [Authorize(Roles = "Administrator")]
-    [EndpointSummary("Create user by admin")]
-    [EndpointDescription("allows the admin to manually create a user or admin account")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status409Conflict)]
-    public async Task<IActionResult> CreateUser([FromBody] CreateUserRequestDto request)
-    {
-      User userEntity = request.ToEntity();
-
-      try
-      {
-        User? createdUser = await _authService.CreateUserByAdminAsync(userEntity, request.Password);
-        if (createdUser is null) //is null = pareil que is not null pour ignorer la surcharge d'op
-        {
-          return BadRequest(new { Error = "User creation failed." });
-        }
-
-        return Ok(new
-        {
-          Message = "User created successfully.",
-          UserId = createdUser.Id,
-          Email = createdUser.Email
-        });
-      }
-      catch (InvalidOperationException ex)
-      {
-        return Conflict(new { ex.Message }); //mail deja utilisé
-      }
-      catch (Exception)
-      {
-        return StatusCode(500, "Internal server error");
-      }
-    }
   }
 }
