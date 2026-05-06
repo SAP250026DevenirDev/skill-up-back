@@ -9,8 +9,5 @@ namespace SkillUp.Core.Interfaces.Services.Auth
     {
         Task<User> LoginAsync(string email, string password);
         Task<User?> RegisterAsync(string email, string FirstName, string LastName, string Role);
-        Task<User?> CreateUserByAdminAsync(User user, string password);
-
-        
     }
 }

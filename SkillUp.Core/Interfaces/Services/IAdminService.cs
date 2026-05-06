@@ -18,5 +18,13 @@ namespace SkillUp.Core.Interfaces.Services
 
 
         Task<User?> DisableUserAsync(Guid userId, Guid adminId);
+        
+        /// <summary>
+        /// Crée un nouvel utilisateur (action réservée à l'Admin).
+        /// </summary>
+        /// <param name="user">L'entité User contenant les infos de base (et le rôle).</param>
+        /// <param name="password">Le mot de passe en clair (qui sera haché dans l'implémentation).</param>
+        /// <returns>L'utilisateur créé.</returns>
+        Task<User?> CreateUserByAdminAsync(User user, string password);
     }
 }

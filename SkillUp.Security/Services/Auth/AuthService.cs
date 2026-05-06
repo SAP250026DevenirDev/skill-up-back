@@ -68,31 +68,5 @@ namespace SkillUp.Security.Services.Auth
             };
             return await _userRepository.AddAsync(user);
         }
-
-        #region CreateUserByAdminAsync
-
-        /// <summary>
-        /// Allows an administrator to manually create a new user in the system.
-        /// </summary>
-        /// <param name="user">The user entity containing basic information and the assigned role.</param>
-        /// <param name="password">The plain-text password to be hashed before storage.</param>
-        /// <returns>A task representing the asynchronous operation, containing the created user with their generated ID.</returns>
-        /// <exception cref="Exception">Thrown if the email is already in use or if the data is invalid.</exception>
-        public async Task<User?> CreateUserByAdminAsync(User user, string password)
-        {
-            User? userExist = await _userRepository.GetByEmailAsync(user.Email);
-            if (userExist is not null) //is not null pour ignorer les surcharches d'operateurs (!=) si il y en a un jour
-            {
-                throw new InvalidOperationException("The email is already in use");
-            }
-
-            user.HashedPassword = _passwordHasherService.HashPassword(password);
-            user.IsActive = true;
-            user.CreatedAt = DateTime.UtcNow;
-            user.UpdatedAt = DateTime.UtcNow;
-            return await _userRepository.AddAsync(user);
-        }
-
-        #endregion
     }
 }

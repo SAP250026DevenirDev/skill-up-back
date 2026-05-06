@@ -56,7 +56,7 @@ public class AdminController(
 
     try
     {
-      User? createdUser = await _authService.CreateUserByAdminAsync(userEntity, request.Password);
+      User? createdUser = await _adminService.CreateUserByAdminAsync(userEntity, request.Password);
       if (createdUser is null) //is null = pareil que is not null pour ignorer la surcharge d'op
       {
         return BadRequest(new { Error = "User creation failed." });
