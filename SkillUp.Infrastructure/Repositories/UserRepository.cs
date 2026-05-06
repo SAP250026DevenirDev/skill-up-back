@@ -36,12 +36,6 @@ namespace SkillUp.Infrastructure.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public async Task AddAsync(User user)
-        {
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-        }
-
         // Ajouts pour la fonctionnalité Admin
         public async Task<User?> GetByIdAsync(Guid id)
         {
