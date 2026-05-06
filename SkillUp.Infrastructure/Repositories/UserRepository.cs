@@ -48,5 +48,11 @@ namespace SkillUp.Infrastructure.Repositories
             var saved = await _context.SaveChangesAsync();
             return saved > 0;
         }
+
+        public async Task DeleteAsync(User user)
+        {
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }

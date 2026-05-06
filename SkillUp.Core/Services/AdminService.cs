@@ -47,6 +47,23 @@ public class AdminService(
         user.UpdatedAt = DateTime.UtcNow;
         return await _userRepository.AddAsync(user);
     }
+    #endregion
+
+    #region HardDeleteUserAsync
+
+    public async Task<bool> HardDeleteUserAsync(Guid userId)
+    {
+        User? user = await _userRepository.GetByIdAsync(userId);
+        
+        if (user is null)
+        {
+            return false;
+        }
+        
+        await _userRepository.DeleteAsync(user);
+        
+        return true;
+    }
 
     #endregion
 }

@@ -26,5 +26,13 @@ namespace SkillUp.Core.Interfaces.Services
         /// <param name="password">Le mot de passe en clair (qui sera haché dans l'implémentation).</param>
         /// <returns>L'utilisateur créé.</returns>
         Task<User?> CreateUserByAdminAsync(User user, string password);
+        
+        /// <summary>
+        /// Supprime définitivement un utilisateur de la base de données pour répondre aux exigences RGPD.
+        /// </summary>
+        /// <param name="id">L'identifiant unique (Guid) de l'utilisateur à supprimer.</param>
+        /// <returns>Une tâche représentant l'opération, contenant true si la suppression est réussie, sinon false.</returns>
+        Task<bool> HardDeleteUserAsync(Guid id);
+        
     }
 }
