@@ -1,6 +1,7 @@
 ﻿using SkillUp.Core.Interfaces.Repositories;
 using SkillUp.Core.Services.Data;
 using SkillUp.Domaine.Entities;
+using System.Net;
 
 namespace SkillUp.Core.Interfaces.Services.Data;
 
@@ -8,14 +9,9 @@ public class CategoryService(ICategoryRepository _categoryRepository) : ICategor
 {
     public async Task<Category?> GetByIdsAsync(Guid id)
     {
-        try
-        {
-            return await _categoryRepository.GetByIdsAsync(id);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"An error occurred while retrieving the category by id: {ex.Message}", ex);
-        }
+        Category? category = await _categoryRepository.GetByIdsAsync(id);
+        if (category == null) throw new KeyNotFoundException();
+        return category.ToResponseDto();
     }
 
     public async Task<Category?> GetByNameAsync(string name)

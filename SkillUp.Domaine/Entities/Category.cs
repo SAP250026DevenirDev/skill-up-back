@@ -1,4 +1,6 @@
-﻿using SkillUp.Domaine.Enums;
+﻿using System;
+using System.Collections.Generic;
+using SkillUp.Domaine.Enums;
 
 namespace SkillUp.Domaine.Entities;
 
@@ -9,4 +11,9 @@ public class Category
   public string Description { get; set; } = string.Empty;
 
   public virtual ICollection<Skill> Skills { get; set; } = new List<Skill>();
+
+  public Category ToResponseDto()
+  {
+    return this;
+  }
 }

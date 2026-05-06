@@ -1,4 +1,5 @@
 ﻿using SkillUp.API.Dtos.Requests;
+using SkillUp.API.Dtos.Responses;
 using SkillUp.Domaine.Entities;
 
 namespace SkillUp.API.Mappers;
@@ -13,6 +14,16 @@ public static class CategoryMapper
             Id = Guid.NewGuid(),
             Name = dto.Name,
             Description = dto.Description,
+        };
+    }
+
+    public static AddCategoryResponsesDto ToDto(this Category category)
+    {
+        return new AddCategoryResponsesDto()
+        {
+            Id = category.Id,
+            Name = category.Name,
+            Description = category.Description,
         };
     }
 }

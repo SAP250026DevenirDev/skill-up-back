@@ -21,14 +21,9 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
 
             await _categoryService.AddAsync(category);
 
-            var response = new AddCategoryResponsesDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                Description = category.Description
-            };
+            var response = category.ToDto();
 
-            return CreatedAtAction(nameof(AddCategory), new { id = category.Id }, response);
+            return Ok(response);
         }
         catch (ArgumentNullException ex)
         {
