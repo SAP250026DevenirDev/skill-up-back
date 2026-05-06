@@ -14,8 +14,7 @@ namespace SkillUp.API.Controllers;
 [Route("api/[controller]")]
 [Authorize(Roles = "Administrator")]
 public class AdminController(
-  IAdminService _adminService,
-  IAuthService _authService) : ControllerBase
+  IAdminService _adminService) : ControllerBase
 {
   [HttpPatch("users/{id:guid}")]
   public async Task<IActionResult> DisableUser(Guid id)
