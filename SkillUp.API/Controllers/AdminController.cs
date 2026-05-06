@@ -17,7 +17,7 @@ public class AdminController(
   IAdminService _adminService,
   IAuthService _authService) : ControllerBase
 {
-  [HttpDelete("users/{id:guid}")]
+  [HttpPatch("users/{id:guid}")]
   public async Task<IActionResult> DisableUser(Guid id)
   {
     var adminIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -77,6 +77,27 @@ public class AdminController(
     {
       return StatusCode(500, "Internal server error");
     }
+  }
+  #endregion
+
+  #region HardDeleteUser
+
+  [HttpDelete("users/{id:guid}/HardDeleteUser")]
+  [Authorize(Roles = "Administrator")]
+  [EndpointDescription("allows the admin to manually delete a user or admin account completely in the database")]
+  [EndpointSummary("Hard delete user by id")]
+  [ProducesResponseType(StatusCodes.Status204NoContent)]
+  [ProducesResponseType(StatusCodes.Status404NotFound)]
+  public async Task<IActionResult> HardDeleteUser(Guid id)
+  {
+    var result = await _adminService.HardDeleteUserAsync(id);
+
+    if (!result)
+    {
+      return NotFound(new { Message = $"User with ID {id} not found." });
+    }
+
+    return NoContent();
   }
 
   #endregion
