@@ -24,7 +24,8 @@ namespace SkillUp.Security.Services.Auth
             {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim("role", user.Role.ToString() ?? "User")
+            new Claim("role", user.Role.ToString() ?? "User"),
+            new Claim("isPasswordChanged", user.IsPasswordChanged.ToString()) // ajout de isPasswordChanged pour premier login
         };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
