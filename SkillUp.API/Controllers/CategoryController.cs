@@ -18,7 +18,7 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
     /// </summary>
 
     [HttpPost]
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public async Task<IActionResult> AddCategory(AddCategoryRequestDto dto)
     {
         try
