@@ -29,10 +29,26 @@ namespace SkillUp.API.Controllers
         /// such as 400 Bad Request, 401 Unauthorized, or 500 Internal Server Error.</returns>
         [HttpPost("newSkill")]
         [Authorize(Roles = "Administrator")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult> Create([FromBody] SkillCreateRequestDto requestDto)
         {
+            try {
+                Skill skillCreated = await _skillService.CreateAsync(requestDto.ToModel());
+                return Ok("The skill has been saving");
+            }
+            catch(ArgumentException ex)
+            {
+                Console.WriteLine($"Bad request: {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Internal server error: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing the request.");
+            }
 
-            return Ok(skillCreated);
         }
     }
 }
