@@ -19,7 +19,7 @@ public class MentoringConfiguration : IEntityTypeConfiguration<Mentoring>
     builder.HasOne(m => m.Collaborator)
       .WithMany(u => u.MentoringsAsCollaborator)
       .HasForeignKey(m => m.CollaboratorId)
-      .OnDelete(DeleteBehavior.Restrict);
+      .OnDelete(DeleteBehavior.Cascade);
     
     builder.HasOne(m => m.Skill)
       .WithMany(s => s.Mentorings)
