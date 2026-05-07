@@ -12,7 +12,6 @@ namespace SkillUp.Security.Services.Auth
 {
     public class AuthService(
         IUserRepository _userRepository,
-        IJwtService _jwtService,
         IPasswordHasherService _passwordHasherService) : IAuthService
     {
         public async Task<User> LoginAsync(string email, string password)

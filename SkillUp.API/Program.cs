@@ -8,8 +8,6 @@ using SkillUp.Core.Services;
 using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Infrastructure.Extensions;
 using SkillUp.Infrastructure.Repositories;
-using SkillUp.Core.Services;
-using SkillUp.Infrastructure.Extensions;
 using SkillUp.Security.Extensions;
 
 
