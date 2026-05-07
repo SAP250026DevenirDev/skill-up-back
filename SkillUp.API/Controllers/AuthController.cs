@@ -22,7 +22,11 @@ namespace SkillUp.API.Controllers
             {
             User user = await _authService.LoginAsync(_loginRequest.Email, _loginRequest.HashedPassword);
             string token = _jwtService.GenerateToken(user);
-                return Ok(new LoginResponseDto { Token = token });
+                return Ok(new LoginResponseDto 
+                { Token = token,
+                  IsPasswordChanged = user.IsPasswordChanged,
+                  IsActive = user.IsActive
+                });
             }
             
             catch (UnauthorizedAccessException ex)
