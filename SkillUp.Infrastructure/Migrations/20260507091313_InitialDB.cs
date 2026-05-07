@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SkillUp.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace SkillUp.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,7 +52,7 @@ namespace SkillUp.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -151,8 +151,8 @@ namespace SkillUp.Infrastructure.Migrations
                 columns: new[] { "Id", "CategoryId", "Description", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("b1c2d3e4-f5a6-4b7c-8d9e-0f1a2b3c4d5e"), new Guid("37a5b39e-8c6c-4f7f-871d-6b5d9e5b5f5a"), "", "C# / EF Core" },
-                    { new Guid("c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f"), new Guid("37a5b39e-8c6c-4f7f-871d-6b5d9e5b5f5a"), "", "SQL Server" }
+                    { new Guid("b1c2d3e4-f5a6-4b7c-8d9e-0f1a2b3c4d5e"), new Guid("37a5b39e-8c6c-4f7f-871d-6b5d9e5b5f5a"), null, "C# / EF Core" },
+                    { new Guid("c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f"), new Guid("37a5b39e-8c6c-4f7f-871d-6b5d9e5b5f5a"), null, "SQL Server" }
                 });
 
             migrationBuilder.InsertData(

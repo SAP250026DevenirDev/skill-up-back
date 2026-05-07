@@ -12,8 +12,8 @@ using SkillUp.Infrastructure.Database.Context;
 namespace SkillUp.Infrastructure.Migrations
 {
     [DbContext(typeof(SkillUpDbContext))]
-    [Migration("20260429080415_initialMigrations")]
-    partial class initialMigrations
+    [Migration("20260507091313_InitialDB")]
+    partial class InitialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,6 @@ namespace SkillUp.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar");
 
