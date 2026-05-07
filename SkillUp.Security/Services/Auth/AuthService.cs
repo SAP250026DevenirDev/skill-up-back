@@ -22,7 +22,12 @@ namespace SkillUp.Security.Services.Auth
                 throw new UnauthorizedAccessException("The email/password is not correct");
             }
 
-            
+            if (!user.IsActive)
+            {
+                throw new UnauthorizedAccessException("Compte désactivé");
+            }
+
+
             bool isPasswordOk = _passwordHasherService.VerifyPassword(password, user.HashedPassword);
             if (!isPasswordOk)
             {
