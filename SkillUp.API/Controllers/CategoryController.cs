@@ -68,7 +68,7 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
 
             var updated = await _categoryService.UpdateAsync(id, category);
 
-            var response = CategoryMapper.ToDto(updated!);
+            var response = CategoryMapper.ToDto(updated!, true);
 
             return Ok(response);
         }
