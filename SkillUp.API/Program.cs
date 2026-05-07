@@ -13,6 +13,9 @@ using SkillUp.Infrastructure.Extensions;
 using SkillUp.Security.Extensions;
 
 
+using SkillUp.Core.Services.Data;
+using SkillUp.Core.Interfaces.Services.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //PasswordHasherService hasher = new PasswordHasherService();
@@ -28,6 +31,11 @@ builder.Services.AddSecurityServices(builder.Configuration);
 builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<ISkillsRepository, SkillsRepository>();
 
+//Add Category
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 
@@ -37,6 +45,8 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.ConfigureJwTAuthentication(builder.Configuration);
 
 // Add services to the container.
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
