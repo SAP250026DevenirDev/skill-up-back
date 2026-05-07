@@ -9,5 +9,6 @@ namespace SkillUp.Core.Interfaces.Repositories
         Task<Category?> GetByIdsAsync(Guid Id);
         Task<Category?> GetByNameAsync(string name);
         Task<Category> AddAsync(Category category);
+        Task<Category?> UpdateAsync(Guid id, Category category);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using SkillUp.Core.Interfaces.Repositories;
 using SkillUp.Core.Services.Data;
 using SkillUp.Domaine.Entities;
+using System;
+using System.Threading.Tasks;
 
 namespace SkillUp.Core.Interfaces.Services.Data;
 
@@ -44,5 +46,17 @@ public class CategoryService(ICategoryRepository _categoryRepository) : ICategor
             throw new InvalidOperationException($"A category with the name '{category.Name}' already exists");
 
         await _categoryRepository.AddAsync(category);
+    }
+
+    /// <summary>
+    /// Met à jour une catégorie par son identifiant.
+    /// Lance une KeyNotFoundException si la catégorie n'est pas trouvée.
+    /// </summary>
+    public async Task<Category?> UpdateAsync(Guid id, Category category)
+    {
+        if (category == null)
+            throw new ArgumentNullException(nameof(category), "Category cannot be null");
+
+        return await _categoryRepository.UpdateAsync(id, category);
     }
 }
