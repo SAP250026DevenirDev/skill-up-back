@@ -297,7 +297,7 @@ namespace SkillUp.Infrastructure.Migrations
                     b.HasOne("SkillUp.Domaine.Entities.User", "Collaborator")
                         .WithMany("MentoringsAsCollaborator")
                         .HasForeignKey("CollaboratorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SkillUp.Domaine.Entities.User", "Mentor")
