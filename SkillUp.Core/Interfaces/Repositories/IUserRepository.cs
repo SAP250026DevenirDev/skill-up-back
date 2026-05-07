@@ -12,5 +12,6 @@ namespace SkillUp.Core.Interfaces.Repositories
         Task<User?> GetByIdAsync(Guid id);
         Task<bool> UpdateAsync(User user);
         Task<User?> AddAsync(User user);
+        Task HardDeleteAsync (User user);
     }
 }

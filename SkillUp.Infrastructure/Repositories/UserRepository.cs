@@ -44,9 +44,34 @@ namespace SkillUp.Infrastructure.Repositories
 
         public async Task<bool> UpdateAsync(User user)
         {
-            _context.Users.Update(user);
-            var saved = await _context.SaveChangesAsync();
-            return saved > 0;
+          _context.Users.Update(user);
+          var saved = await _context.SaveChangesAsync();
+          return saved > 0;
+        }
+
+        /// <summary>
+        /// Comme je n'ai pas encore acces à tout ce qui touche aux mentoring (service, repo etc), j'ai décidé de supprimer directement en db afin de pouvoir avancer...
+        /// La methode ici ira effacer les lignes qui sont en rapport avec le user. Mentoring et Collaborator qui est en mentorat etc.
+        /// </summary>
+        /// <param name="user">The user entity to be permanently removed.</param>
+        public async Task HardDeleteAsync(User user)
+        { 
+          
+          //si le user est un mentor
+          IEnumerable<Mentoring> mentoringsAsMentor = _context.Mentorings.Where(m => m.MentorId == user.Id); 
+          
+          //si le user est un collaborateur qui a demande un mentorat.
+          IEnumerable<Mentoring> mentoringsAsCollaborator = _context.Mentorings.Where(m => m.CollaboratorId == user.Id);
+
+          //remove range pour retirer tous les objets (liste de mentor) de la collection renvoyée par le _context
+          _context.Mentorings.RemoveRange(mentoringsAsMentor); 
+          
+          //idem ici, mais pour collaborator 
+          _context.Mentorings.RemoveRange(mentoringsAsCollaborator);
+
+          _context.Users.Remove(user);
+
+          await _context.SaveChangesAsync();
         }
     }
 }
