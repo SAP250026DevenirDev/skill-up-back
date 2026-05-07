@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillUp.Infrastructure.Database.Context;
 
@@ -11,9 +12,11 @@ using SkillUp.Infrastructure.Database.Context;
 namespace SkillUp.Infrastructure.Migrations
 {
     [DbContext(typeof(SkillUpDbContext))]
-    partial class SkillUpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260507091313_InitialDB")]
+    partial class InitialDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,7 +32,6 @@ namespace SkillUp.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar");
 
