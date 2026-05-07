@@ -42,11 +42,6 @@ builder.Services.AddScoped<IAdminService, AdminService>();
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.ConfigureJwTAuthentication(builder.Configuration);
 
-// Add services to the container.
-builder.Services.AddScoped<ISkillService, SkillService>();
-
-
-
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi(options => options.AddDocumentTransformer<BearerSecuritySchemeTransformer>());
