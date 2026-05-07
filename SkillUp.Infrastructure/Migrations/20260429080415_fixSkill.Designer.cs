@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillUp.Infrastructure.Database.Context;
 
@@ -11,9 +12,11 @@ using SkillUp.Infrastructure.Database.Context;
 namespace SkillUp.Infrastructure.Migrations
 {
     [DbContext(typeof(SkillUpDbContext))]
-    partial class SkillUpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260429080415_initialMigrations")]
+    partial class initialMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,7 +158,6 @@ namespace SkillUp.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar");
 
@@ -175,14 +177,12 @@ namespace SkillUp.Infrastructure.Migrations
                         {
                             Id = new Guid("b1c2d3e4-f5a6-4b7c-8d9e-0f1a2b3c4d5e"),
                             CategoryId = new Guid("37a5b39e-8c6c-4f7f-871d-6b5d9e5b5f5a"),
-                            Description = "",
                             Name = "C# / EF Core"
                         },
                         new
                         {
                             Id = new Guid("c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f"),
                             CategoryId = new Guid("37a5b39e-8c6c-4f7f-871d-6b5d9e5b5f5a"),
-                            Description = "",
                             Name = "SQL Server"
                         });
                 });
