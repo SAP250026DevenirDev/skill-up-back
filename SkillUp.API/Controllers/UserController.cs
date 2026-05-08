@@ -31,7 +31,7 @@ namespace SkillUp.API.Controllers
             var entity = await _userService.GetByIdAsync(id);
             if (entity is null)
                 {
-                    return BadRequest();
+                    return NotFound();
                 }
                 await _userService.UpdatePassword(id, dto.CurrentPassword, dto.NewPassword);
                 return Ok();
