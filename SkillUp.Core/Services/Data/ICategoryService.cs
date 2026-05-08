@@ -8,8 +8,10 @@ namespace SkillUp.Core.Services.Data;
 
 public interface ICategoryService
 {
-    Task<Category?> GetByIdsAsync(Guid id);
+    Task<List<Category>> GetAllAsync();
+    Task<Category?> GetByIdAsync(Guid id);
     Task<Category?> GetByNameAsync(string Name);
     Task AddAsync (Category category);
     Task<Category?> UpdateAsync(Guid id, Category category);
+    Task DeleteAsync(Guid id);
 }
