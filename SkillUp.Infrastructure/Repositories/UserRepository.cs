@@ -50,7 +50,7 @@ namespace SkillUp.Infrastructure.Repositories
         }
 
         /// <summary>
-        /// Comme je n'ai pas encore acces à tout ce qui touche aux mentoring (service, repo etc), j'ai décidé de supprimer directement en db afin de pouvoir avancer...
+        /// Comme je n'ai pas encore acces à tout ce qui touche aux mentoring (service, repo etc), j'ai décidé de supprimer directement en db afin de pouvoir avancer.
         /// La methode ici ira effacer les lignes qui sont en rapport avec le user. Mentoring et Collaborator qui est en mentorat etc.
         /// </summary>
         /// <param name="user">The user entity to be permanently removed.</param>

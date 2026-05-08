@@ -32,4 +32,16 @@ public async Task<IActionResult> DisableUser(Guid id)
 
     return Ok(response);
 }
+
+[HttpDelete("users/{id:guid}/HardDeleteUser")]
+[EndpointSummary("Hard Delete User in database")]
+[EndpointDescription("Allows the admin to delete a user in db if asked. (right to be forgotten)")]
+[ProducesResponseType(StatusCodes.Status204NoContent)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+public async Task<IActionResult> HardDeleteUserAsync(Guid id)
+{
+  var result = await _adminService.HardDeleteUserAsync(id);
+  if (!result) return NotFound(new {Message = $"User with id {id} not found."});
+  return NoContent();
+}
 }
