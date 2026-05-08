@@ -37,9 +37,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 
-//Add Evaluate
-builder.Services.AddScoped<IEvaluateRepository, EvaluateRepository>();
-builder.Services.AddScoped<IEvaluateService, EvaluateService>();
+
 
 //Déplacée dans InfraServiceExtension
 //builder.Services.AddDbContext<SkillUpDbContext>(options =>
