@@ -54,7 +54,6 @@ namespace SkillUp.Infrastructure.Repositories
         /// <param name="id">The unique identifier (Guid) of the user to update.</param>
         /// <param name="password">The new password, which must be already hashed.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
-        /// <exception cref="KeyNotFoundException">Thrown when no user is found with the provided identifier.</exception>
         public async Task UpdatePassword(Guid id, string password)
         {
             var entity = await _context.Users.FindAsync(id);
