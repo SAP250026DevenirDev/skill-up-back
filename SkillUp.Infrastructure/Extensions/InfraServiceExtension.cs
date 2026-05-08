@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SkillUp.Core.Interfaces.Repositories;
+using SkillUp.Core.Interfaces.Services.Data;
+using SkillUp.Core.Services.Data;
 using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Infrastructure.Repositories;
 using System;
@@ -19,6 +21,7 @@ namespace SkillUp.Infrastructure.Extensions
             services.AddDbContext<SkillUpDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }
