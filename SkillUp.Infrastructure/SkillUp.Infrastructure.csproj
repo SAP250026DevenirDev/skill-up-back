@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Database\Migrations\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Repositories\" />
     <ProjectReference Include="..\SkillUp.Core\SkillUp.Core.csproj" />
     <ProjectReference Include="..\SkillUp.Domaine\SkillUp.Domaine.csproj" />
     <ProjectReference Include="..\SkillUp.Security\SkillUp.Security.csproj" />
