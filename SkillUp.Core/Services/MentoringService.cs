@@ -26,11 +26,6 @@ namespace SkillUp.Core.Services
             return await _mentoringRepository.Create(mentoring);
         }
 
-        public async Task<string> SalutLaMiff()
-        {
-            var PR = "J espere que vous lisez vos PR";
-            return PR;
-        }
         /// <summary>
         /// Récupère une page de mentorats.
         /// </summary>

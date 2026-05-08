@@ -28,26 +28,26 @@ namespace SkillUp.Infrastructure.Repositories
         }
 
         public async Task<PagedResult<Mentoring>> GetAll(int page, int pageSize)
-{
-    var query = _context.Mentorings
-        .Include(m => m.Skill)
-        .Include(m => m.Mentor)
-        .Include(m => m.Collaborator);
+        {
+            var query = _context.Mentorings
+                .Include(m => m.Skill)
+                .Include(m => m.Mentor)
+                .Include(m => m.Collaborator);
 
-    var totalCount = await query.CountAsync();
-    var items = await query
-        .Skip((page - 1) * pageSize)
-        .Take(pageSize)
-        .ToListAsync();
+            var totalCount = await query.CountAsync();
+            var items = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
 
-    return new PagedResult<Mentoring>
-    {
-        Items = items,
-        TotalCount = totalCount,
-        Page = page,
-        PageSize = pageSize,
-    };
-}
+            return new PagedResult<Mentoring>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                Page = page,
+                PageSize = pageSize,
+            };
+        }
 
         public async Task<Mentoring?> GetById(Guid id) =>
         await _context.Mentorings.Include(m => m.Skill).Include(m => m.Mentor).Include(m => m.Collaborator)
