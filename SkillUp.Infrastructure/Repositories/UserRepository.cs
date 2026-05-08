@@ -48,5 +48,22 @@ namespace SkillUp.Infrastructure.Repositories
             var saved = await _context.SaveChangesAsync();
             return saved > 0;
         }
+        /// <summary>
+        /// Updates the user's password and refreshes security-related metadata.
+        /// </summary>
+        /// <param name="id">The unique identifier (Guid) of the user to update.</param>
+        /// <param name="password">The new password, which must be already hashed.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public async Task UpdatePassword(Guid id, string password)
+        {
+            var entity = await _context.Users.FindAsync(id);
+            if (entity is not null)
+            {
+                entity.IsPasswordChanged = true;
+                entity.UpdatedAt = DateTime.UtcNow;
+                entity.HashedPassword = password;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
