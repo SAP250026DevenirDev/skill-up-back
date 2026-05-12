@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SkillUp.Core.Interfaces.Repositories;
+using SkillUp.Core.Interfaces.Services;
 using SkillUp.Core.Interfaces.Services.Data;
+using SkillUp.Core.Services;
 using SkillUp.Core.Services.Data;
 using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Infrastructure.Repositories;
@@ -27,6 +29,8 @@ namespace SkillUp.Infrastructure.Extensions
 
             services.AddScoped<IMentoringService, MentoringService>();
             services.AddScoped<IMentoringRepository, MentoringRepository>();
+            services.AddScoped<IEvaluateRepository, EvaluateRepository>();
+            services.AddScoped<IEvaluateService, EvaluateService>();
         }
     }
 }

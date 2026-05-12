@@ -85,4 +85,66 @@ public class CategoryController(ICategoryService _categoryService) : ControllerB
             return StatusCode(500, $"An unexpected error occurred : {ex.Message}");
         }
     }
+    /// <summary>
+    /// Récupère toutes les catégories.
+    /// GET api/category
+    /// Retourne 200 OK avec la liste des catégories.
+    /// </summary>
+    [HttpGet]
+    [Authorize(Roles = "Administrator")]
+    public async Task<IActionResult> GetAll()
+    {
+        try
+        {
+            var categories = await _categoryService.GetAllAsync();
+            return Ok(categories);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An unexpected error occurred : {ex.Message}");
+        }
+    }
+    /// <summary>
+    /// Récupère une catégorie par son identifiant.
+    /// </summary>
+    [HttpGet("{id:guid}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        try
+        {
+            var category = await _categoryService.GetByIdAsync(id);
+            if (category == null) return NotFound($"Category with id {id} not found");
+            return Ok(CategoryMapper.ToDto(category));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An unexpected error occurred : {ex.Message}");
+        }
+    }
+    /// <summary>
+    /// Supprime une catégorie existante.
+    /// DELETE api/category/{id}
+    /// Retourne 204 NoContent si supprimée,
+    /// 404 NotFound si la catégorie n'existe pas,
+    /// 500 en cas d'erreur inattendue.
+    /// </summary>
+    [HttpDelete("{id:guid}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<IActionResult> DeleteCategory(Guid id)
+    {
+        try
+        {
+            await _categoryService.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound($"Category with id {id} not found");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An unexpected error occurred : {ex.Message}");
+        }
+    }
 }
