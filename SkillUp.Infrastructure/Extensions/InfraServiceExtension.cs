@@ -25,6 +25,8 @@ namespace SkillUp.Infrastructure.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
 
+            services.AddScoped<IMentoringService, MentoringService>();
+            services.AddScoped<IMentoringRepository, MentoringRepository>();
             services.AddScoped<IEvaluateRepository, EvaluateRepository>();
             services.AddScoped<IEvaluateService, EvaluateService>();
         }
