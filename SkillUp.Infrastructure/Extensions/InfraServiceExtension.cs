@@ -6,6 +6,8 @@ using SkillUp.Core.Interfaces.Services.Data;
 using SkillUp.Core.Services.Data;
 using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Infrastructure.Repositories;
+using SkillUp.Core.Interfaces.Services;
+using SkillUp.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +24,9 @@ namespace SkillUp.Infrastructure.Extensions
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IMentoringService, MentoringService>();
+            services.AddScoped<IMentoringRepository, MentoringRepository>();
         }
     }
 }

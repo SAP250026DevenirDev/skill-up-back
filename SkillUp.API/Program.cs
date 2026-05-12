@@ -37,8 +37,6 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 
-builder.Services.AddScoped<IMentoringService, MentoringService>();
-builder.Services.AddScoped<IMentoringRepository, MentoringRepository>();
 //Déplacée dans InfraServiceExtension
 //builder.Services.AddDbContext<SkillUpDbContext>(options =>
 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
