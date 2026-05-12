@@ -8,8 +8,6 @@ using SkillUp.Core.Services;
 using SkillUp.Core.Services.Data;
 using SkillUp.Infrastructure.Database.Context;
 using SkillUp.Infrastructure.Repositories;
-using SkillUp.Core.Interfaces.Services;
-using SkillUp.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
